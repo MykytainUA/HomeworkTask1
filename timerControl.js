@@ -79,24 +79,37 @@ function PrintTimer(){ // Outputs data from secondsLeft on page
     var seconds = secondsLeft % 60;
     var minutes = Math.floor((secondsLeft - (Math.floor(secondsLeft/3600) * 3600))/60);
     var hours = Math.floor(secondsLeft/3600);
+    var formattedSeconds = '00';
+    var formattedMinutes = '00';
+    var formattedHours = '00';
 
     if(seconds > 9){
         document.getElementById("secondsOutput").innerHTML = seconds + " секунд ";
+        formattedSeconds = seconds + " секунд ";  
     } else {
         document.getElementById("secondsOutput").innerHTML = '0' + seconds + " секунд ";
+        formattedSeconds = '0' + seconds + " секунд ";
     }
 
     if(minutes > 9){
         document.getElementById("minutesOutput").innerHTML = minutes + " хвилин ";
+        formattedMinutes = minutes + " хвилин ";
     } else {
         document.getElementById("minutesOutput").innerHTML = '0' + minutes + " хвилин ";
+        formattedMinutes = '0' + minutes + " хвилин ";
     }
 
     if(hours > 9){
         document.getElementById("hoursOutput").innerHTML = hours + " годин ";
+        formattedHours = hours + " годин ";
     } else {
         document.getElementById("hoursOutput").innerHTML = '0' + hours + " годин ";
+        formattedHours = '0' + hours + " годин ";
     }
+
+    document.getElementById("titleID").innerHTML = formattedHours + formattedMinutes + formattedSeconds;
+
+
 
 }
 
@@ -109,8 +122,8 @@ function AskForNotificationPermission(){
 }
 
 function ShowNotification(){
-    notification = new Notification('Привет!', {
-        body: 'Это пример уведомления.',
+    notification = new Notification('Час вийшов!', {
+        body: 'Пора робити справи.',
         icon: 'Red_clock.png' // Путь к изображению для иконки уведомления
     });
     notification.onshow = function() { setTimeout(notification.close, 15000) };
@@ -161,8 +174,8 @@ function SetButtonsColors(){
     }
 
     if(isRepeatButtonPressed){
-        document.getElementById('repeatButton').style.backgroundColor = 'rgb(209, 9, 9)';
-    } else {
         document.getElementById('repeatButton').style.backgroundColor = 'rgb(9, 209, 9)';
+    } else {
+        document.getElementById('repeatButton').style.backgroundColor = 'rgb(209, 9, 9)';
     }
 }
